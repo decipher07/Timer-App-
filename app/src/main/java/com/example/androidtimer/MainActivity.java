@@ -19,6 +19,14 @@ public class MainActivity extends AppCompatActivity {
     Button goButton ;
     CountDownTimer countDownTimer;
 
+    public void resetTimer (){
+        counterIsActive = false ;
+        timerSeekBar.setProgress(30);
+        timerSeekBar.setEnabled(true);
+        countDownTimer.cancel();
+        goButton.setText("GO!");
+    }
+
     public void buttonClicked (View view) {
 
         if (!counterIsActive){
@@ -36,14 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     Log.i("Finished", "Timer All Done");
+                    resetTimer();
                 }
             }.start();
         } else {
-            counterIsActive = false ;
-            timerSeekBar.setProgress(30);
-            timerSeekBar.setEnabled(true);
-            countDownTimer.cancel();
-            goButton.setText("GO!");
+            resetTimer();
         }
     }
 
